@@ -1,32 +1,7 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Dec 15 20:07:39 2018
-
-@author: emre
-"""
-
 import numpy as np
-import pandas as pd
 import scipy as sc
-from sklearn.neighbors import KNeighborsClassifier
 import random
-from sklearn.neural_network import MLPClassifier
-from sklearn.metrics import cohen_kappa_score
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import classification_report
-from sklearn.preprocessing import normalize
-from sklearn.metrics import f1_score
-
-from sklearn.svm import SVC
-from sklearn import tree
-from sklearn.naive_bayes import GaussianNB
-import re
-from sklearn.metrics import average_precision_score
-
-
-
+"""
 def classify(X_train,X_test,y_train,y_test):
     
     #model = KNeighborsClassifier(5)
@@ -46,7 +21,7 @@ def classify(X_train,X_test,y_train,y_test):
     #report = classification_report(y_test, y_est_test, target_names=target_names)
     accuracy = accuracy_score(y_test, y_est_test)
     return f1minScore,accuracy
-
+"""
 def fitness(f1min,accuracy,cost):
     coef1 = 0.6
     coef2 = 0.4
@@ -76,6 +51,8 @@ def crossOver(indices1,indices2):
     return offspring1, offspring2
 
 
+"""
+import numpy as np
 def oversampler(data,factor):
     ones_twos = np.zeros((0,22))
     for z in data:
@@ -88,4 +65,4 @@ def oversampler(data,factor):
         
     random.shuffle(newData)
     return newData
-
+"""

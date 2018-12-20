@@ -1,21 +1,12 @@
 import numpy as np
-# import pandas as pd
-# import scipy as sc
-# from sklearn.neighbors import KNeighborsClassifier
 import random
-# from sklearn.neural_network import mlpclassifier
-# from sklearn.metrics import cohen_kappa_score
-# from sklearn.metrics import accuracy_score
-# from sklearn.metrics import confusion_matrix
-# from sklearn.metrics import classification_report
-# from sklearn.preprocessing import normalize
-# from sklearn.svm import svc
-# from sklearn import tree
 from funcs import *
 import matplotlib.pyplot as plt
+from classify import classify
+from oversampler import oversampler
 
 # %%
-##############################################################################
+
 # Preprocessing
 trainData_ = np.loadtxt(fname="./../data/ann-train.data.txt")
 testData = np.loadtxt(fname="./../data/ann-test.data.txt")
@@ -37,9 +28,10 @@ y_train = trainData[:, -1]
 X_test = testData[:, :-1]
 y_test = testData[:, -1]
 
+print('\nPlease choose your classifier: \n')
+print("""'knn' for k-nearest neighbor\n'nn' for neural network\n'dt' for decision tree """)
+option = (input('Please enter your option for classifier:'))
 ##############################################################################
-
-f1Score, accTest = classify(X_train, X_test, y_train, y_test)
 
 # %%
 ##############################################################################
@@ -48,8 +40,6 @@ f1Score, accTest = classify(X_train, X_test, y_train, y_test)
 numOfInitMembers = 4
 
 numOfInitMembers_ = numOfInitMembers
-# numOfInitMembers  indicates p.
-
 
 accuracyListPopulation = []
 indicesListPopulation = []
@@ -68,7 +58,7 @@ while (numOfInitMembers_ != 0):
     reducedX_train = X_train[:, indices]
     reducedX_test = X_test[:, indices]
 
-    f1S, accTest = classify(reducedX_train, reducedX_test, y_train, y_test)
+    f1S, accTest = classify(option, reducedX_train, reducedX_test, y_train, y_test)
     accuracyListPopulation.append(accTest)
     indicesListPopulation.append(genomeInd)
     howManyFeatures.append(sum(genomeInd))
@@ -105,7 +95,7 @@ while numberOfIterations_ != 0:
     reducedX_train1 = X_train[:, indices1]
     reducedX_test1 = X_test[:, indices1]
 
-    f1S, accTest = classify(reducedX_train1, reducedX_test1, y_train, y_test)
+    f1S, accTest = classify(option, reducedX_train1, reducedX_test1, y_train, y_test)
     accuracyListPopulation.append(accTest)
     indicesListPopulation.append(offs1)
     howManyFeatures.append(sum(offs1))
@@ -116,7 +106,7 @@ while numberOfIterations_ != 0:
     reducedX_train2 = X_train[:, indices2]
     reducedX_test2 = X_test[:, indices2]
 
-    f1S, accTest = classify(reducedX_train2, reducedX_test2, y_train, y_test)
+    f1S, accTest = classify(option, reducedX_train2, reducedX_test2, y_train, y_test)
     accuracyListPopulation.append(accTest)
     indicesListPopulation.append(offs2)
     howManyFeatures.append(sum(offs2))
@@ -135,7 +125,7 @@ while numberOfIterations_ != 0:
         reducedX_trainMut = X_train[:, indicesMut]
         reducedX_testMut = X_test[:, indicesMut]
 
-        f1S, accTest = classify(reducedX_trainMut, reducedX_testMut, y_train, y_test)
+        f1S, accTest = classify(option, reducedX_trainMut, reducedX_testMut, y_train, y_test)
         accuracyListPopulation[pnt] = accTest
 
         howManyFeatures[pnt] = (sum(indicesListPopulation[pnt]))
@@ -156,6 +146,7 @@ while numberOfIterations_ != 0:
 
     numberOfIterations_ -= 1
 
+print(fitnessPopulation)
 qq_ = list(range(1, (len(EachGenerationAvg) + 1)))
 
 plt.plot(qq_, EachGenerationAvg)
