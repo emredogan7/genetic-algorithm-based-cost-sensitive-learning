@@ -17,7 +17,7 @@ For my genetic algorithm, I start my population with 10 hypotheses (each one cor
 <img src="./documentation/results/fitness.png" width="400">
 
 
-After creating the population, I iterated 200 generations with mutation and cross-over operations on the population. Each new created hypothesis is ranked with respect to the fitness values. Best fitness valued offsprings are replaced with the worst fitness valued hypothesis in the population. By so, the number of members in population is kept constant. 
+After creating the population, I iterated 200 generations with mutation and cross-over operations on the population. Each new created hypothesis is ranked with respect to the fitness values. Best fitness valued offsprings are replaced with the worst fitness valued hypotheses in the population. By applying this, the number of members in population is kept constant. 
 
 
 At the end of each generation, the average fitness value of 10 members are stored and shown in the graph below.
