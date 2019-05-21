@@ -23,7 +23,7 @@ After creating the population, I iterated 200 generations with mutation and cros
 At the end of each generation, the average fitness value of 10 members are stored and shown in the graph below.
 
 
-<img src="./documentation/results/avg_fitness.png" width="600">
+<img src="./doc/fig/avg_fitness.png" width="600">
 
 ***Average Fitness Value of Each Generation***<br><br><br>
 
@@ -31,7 +31,7 @@ At the end of each generation, the average fitness value of 10 members are store
 
 It is noticeable that after generation 70, the increase in the fitness function slows down and almost saturates.  
 
-A more detailed technical report is available [here](./doc/final_report.pdf)
+- A more detailed technical report is available [here](./doc/final_report.pdf).
 
 
 Emre Doğan
